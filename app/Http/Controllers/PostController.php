@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Http;
 
 class PostController extends Controller
 {
@@ -113,4 +114,32 @@ class PostController extends Controller
         }
 
     }
+
+
+    public function getExternalPost()
+    {
+        //
+        $response = Http::get('https://jsonplaceholder.typicode.com/todos/2');
+
+        if ($response->successful()) {
+            $data = $response->json();
+
+            $post = new Post;
+            $post->id = $data['id'];
+            $post->title = $data['title'];
+            $post->description = $data['completed'];
+            $post->created_at = null;
+            $post->updated_at = null;
+
+
+            return $post;
+        } else {
+            // Handle the error
+            return 'Failed';
+        }
+        //return $data;
+    }
+
+
+
 }

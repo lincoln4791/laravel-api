@@ -43,6 +43,10 @@ Route::post('login',[UserController::class,'login']);
 Route::get('login',[UserController::class,'login']);
 Route::post('registration',[UserController::class,'registration']);
 
+Route::get('get-external-post',[PostController::class,'getExternalPost']);
+Route::get('get-external-blog',[BlogController::class,'getExternalBLog']);
+
+
 //
 
 Route::group(['middleware'=>'auth:api'],function(){
