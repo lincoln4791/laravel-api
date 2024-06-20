@@ -19,7 +19,8 @@ class UsersTableSeeder extends Seeder
             [
                 'name'=>'john',
                 'email'=>'john@mail.com',
-                'password'=>Hash::make('12345')
+                'password'=>Hash::make('12345'),
+                'isPremium'=>false
             ]
             );
     }

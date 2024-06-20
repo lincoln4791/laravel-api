@@ -6,6 +6,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SSLController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,9 @@ Route::post('registration',[UserController::class,'registration']);
 
 Route::get('get-external-post',[PostController::class,'getExternalPost']);
 Route::get('get-external-blog',[BlogController::class,'getExternalBLog']);
+
+// SSL
+Route::apiResource('ssl',SSLController::class);
 
 
 //

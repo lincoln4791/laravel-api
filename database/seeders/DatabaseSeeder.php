@@ -22,15 +22,22 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $faker = Faker::create();
-        foreach(range(1, 10) as $index) {
+        foreach(range(1, 2) as $index) {
             DB::table('blogs')->insert([
                 'title' => $faker->name,
                 'description' => $faker->text(400)
             ]);
         }
 
-        foreach(range(1, 10) as $index) {
+        foreach(range(1, 2) as $index) {
             DB::table('posts')->insert([
+                'title' => $faker->name,
+                'description' => $faker->text(400)
+            ]);
+        }
+
+        foreach(range(1, 2) as $index) {
+            DB::table('s_s_l_s')->insert([
                 'title' => $faker->name,
                 'description' => $faker->text(400)
             ]);
