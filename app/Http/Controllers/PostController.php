@@ -32,9 +32,12 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        $user = $request->user();
         $post = new Post;
         $post->title = $request->title;
         $post->description = $request->description;
+        $post->user_id = $user->id;
+
         $result = $post->save();
 
         if($result){
@@ -139,6 +142,21 @@ class PostController extends Controller
         }
         //return $data;
     }
+
+     public function getPrivatePosts(Request $request){
+
+        $user = $request->user();
+        $posts = Post::where('user_id', $user->id)->get();
+
+        if($posts){
+            return response()->json($posts);
+        }
+        else{
+            return "error";
+        }
+
+
+     }
 
 
 

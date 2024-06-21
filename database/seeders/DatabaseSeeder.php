@@ -32,16 +32,17 @@ class DatabaseSeeder extends Seeder
         foreach(range(1, 2) as $index) {
             DB::table('posts')->insert([
                 'title' => $faker->name,
-                'description' => $faker->text(400)
+                'description' => $faker->text(400),
+                'user_id' => 1
             ]);
         }
 
-        foreach(range(1, 2) as $index) {
+        /*foreach(range(1, 2) as $index) {
             DB::table('s_s_l_s')->insert([
                 'title' => $faker->name,
                 'description' => $faker->text(400)
             ]);
-        }
+        }*/
 
     }
 }
