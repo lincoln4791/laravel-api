@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
@@ -56,5 +57,8 @@ Route::apiResource('ssl',SSLController::class);
 Route::group(['middleware'=>'auth:api'],function(){
     Route::apiResource('post',PostController::class);
     Route::get('get-private-post',[PostController::class,'getPrivatePosts']);
+
+    Route::apiResource('brand',BrandController::class);
+    Route::post('get-brands',[BrandController::class,'getBrands']);
 });
 

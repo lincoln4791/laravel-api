@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Validator;
 
 class UserController extends Controller
@@ -67,6 +68,9 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
+
+        Log::info('Login Called');
+
         if(Auth::attempt(
             [
                 'email'=>$request->email,
@@ -74,6 +78,23 @@ class UserController extends Controller
             ]
         )){
             $user = Auth::user();
+
+
+            $existingToken = $user->tokens()->where('name', 'auth_token')->first();
+
+            if ($existingToken) {
+                Log::info('Existing token found');
+                // If the token exists and is not revoked, return it
+                return response()->json([
+                    'access_token' => $existingToken->id,
+                    'token_type' => 'Bearer',
+                ]);
+            }
+            else{
+                Log::info('Existing token No found');
+            }
+
+
             $user -> access_token = $user->createToken('api-application')->accessToken;;
             $resArray = [];
             $resArray['code'] = '200';
