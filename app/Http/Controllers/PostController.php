@@ -71,9 +71,7 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
         $post = Post::find($id);
-
         if($post){
             $post->title = $request->title;
             $post->description = $request->description;
@@ -85,12 +83,10 @@ class PostController extends Controller
             else{
                 return ["result"=>"Post Not Updated"];
             }
-
         }
         else{
             return ["result"=>"Post Not Found"];
         }
-
     }
 
     /**
@@ -98,7 +94,6 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
         $post = Post::find($id);
 
         if($post){
@@ -110,7 +105,6 @@ class PostController extends Controller
             else{
                 return ["result"=>"Post Not Deleted"];
             }
-
         }
         else{
             return ["result"=>"Post Not Found"];
@@ -121,20 +115,15 @@ class PostController extends Controller
 
     public function getExternalPost()
     {
-        //
         $response = Http::get('https://jsonplaceholder.typicode.com/todos/2');
-
         if ($response->successful()) {
             $data = $response->json();
-
             $post = new Post;
             $post->id = $data['id'];
             $post->title = $data['title'];
             $post->description = $data['completed'];
             $post->created_at = null;
             $post->updated_at = null;
-
-
             return $post;
         } else {
             // Handle the error
@@ -144,20 +133,13 @@ class PostController extends Controller
     }
 
      public function getPrivatePosts(Request $request){
-
         $user = $request->user();
         $posts = Post::where('user_id', $user->id)->get();
-
         if($posts){
             return response()->json($posts);
         }
         else{
             return "error";
         }
-
-
      }
-
-
-
 }

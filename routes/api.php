@@ -51,9 +51,6 @@ Route::get('get-external-blog',[BlogController::class,'getExternalBLog']);
 // SSL
 Route::apiResource('ssl',SSLController::class);
 
-
-//
-
 Route::group(['middleware'=>'auth:api'],function(){
     Route::apiResource('post',PostController::class);
     Route::get('get-private-post',[PostController::class,'getPrivatePosts']);

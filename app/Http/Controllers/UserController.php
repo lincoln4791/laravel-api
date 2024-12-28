@@ -10,37 +10,6 @@ use Validator;
 
 class UserController extends Controller
 {
-    //
-    // public function login(Request $request){
-    //     $user = User::Where('email',$request->email)->first();
-
-    //     if(!$user || !Hash::check($request->password,$user->password)){
-    //         return response(
-    //             [
-    //                 'message'=>'Invalid User'
-    //             ],
-    //             401
-    //         );
-    //     };
-
-    //     $token = $user->createToken('my_aap_token');
-
-    //     $resp = [
-    //         'data'=>[
-    //             'login' => [
-    //                 'user'=>$user,
-    //                 'token' => $token->plainTextToken
-    //             ]
-    //         ]
-
-    //     ];
-
-    //     // Return the response
-    //     return response()->json($resp);
-
-
-    // }
-
     public function registration(Request $request){
         $isValidate = Validator::make(request()->all(),[
             'name'=> 'required',
