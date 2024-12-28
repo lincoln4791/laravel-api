@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
@@ -47,12 +48,18 @@ Route::get('login',[UserController::class,'login']);
 Route::post('registration',[UserController::class,'registration']);
 
 Route::get('get-external-post',[PostController::class,'getExternalPost']);
+
+
 Route::get('get-external-blog',[BlogController::class,'getExternalBLog']);
 
 // SSL
 Route::apiResource('ssl',SSLController::class);
 
-Route::group(['middleware'=>'auth:api'],function(){
+Route::group(['middleware' => ['auth:api', 'role:admin']], function () {
+    Route::apiResource('admin', AdminController::class);
+});
+
+Route::group(['middleware'=>['auth:api','role:user']],function(){
     Route::apiResource('post',PostController::class);
     Route::get('get-private-post',[PostController::class,'getPrivatePosts']);
 

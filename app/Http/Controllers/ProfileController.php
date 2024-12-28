@@ -51,19 +51,6 @@ class ProfileController extends Controller
                 'message'=>'user not found'
             ],401);
         }
-
-        /*$user = Auth::user(); // Get the authenticated user
-        if ($user) {
-            return response()->json([
-                'success' => true,
-                'data' => $user->makeHidden(['token']),
-            ], 200);
-        }
-
-        return response()->json([
-            'success' => false,
-            'message' => 'User not found',
-        ], 404);*/
     }
 
     /**
