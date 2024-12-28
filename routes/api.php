@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
@@ -57,5 +58,9 @@ Route::group(['middleware'=>'auth:api'],function(){
 
     Route::apiResource('brand',BrandController::class);
     Route::post('get-brands',[BrandController::class,'getBrands']);
+
+    Route::apiResource('profile',ProfileController::class);
+    Route::get('get-profile',[ProfileController::class,'getProfile']);
+    Route::post('update-profile',[ProfileController::class,'updateProfile']);
 });
 
